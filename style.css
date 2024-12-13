@@ -176,10 +176,6 @@ body {
     color: #2649e6;
 }
 
-#body {
-    background-color: white;
-}
-
 #name2>small {
     font-size: 25px;
     font-weight: 800;
@@ -383,4 +379,64 @@ li {
 td {
     width: 600px !important;
     text-align: center;
+}
+
+
+/* Light and drak Theme */
+body, html {
+    margin: 0;
+    padding: 0;
+    
+}
+
+body:not(.dark-mode) {
+    background-color: #f1f2f6;
+    color:#1e272e ;
+  
+}
+
+.dark-mode {
+    background-color:  #1e272e;
+    color: #ffff;
+    
+}
+ .dark-mode .mode-wel>h5, .dark-mode .mode-bode, .dark-mode hr{
+    color:  rgb(15, 179, 224);
+    border-color: #fff;
+ }
+ .dark-mode .mode-wel button{
+    background-color:  rgb(15, 179, 224);
+ }
+ .dark-mode .mode-wel>small{
+    color: #fff !important;
+ }
+ .dark-mode #myname, .dark-mode .heading >p{
+    color: rgb(15, 179, 224);
+ }
+ 
+ .dark-mode .mode-bgcol{
+    background-color: #16256a!important;
+    
+ }
+ .dark-mode .name p{
+    color:rgb(15, 179, 224);
+ }
+.dark-mode #resultWindow span{
+    color: #fff;
+}
+ 
+ 
+.container__btn {
+    padding: 10px;
+    color: #fff;
+    background-color: black;
+    border: 1px solid;
+    cursor: pointer;
+    margin-left: 10px;
+    
+}
+
+.container__btn:hover {
+    color:#ccae62;
+    border: 1px solid #ccae62;
 }
