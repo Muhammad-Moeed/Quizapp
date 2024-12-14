@@ -2,7 +2,7 @@ let savedEmail = '';
 let savedPassword = '';
 let savedUsername = '';
 
-// Sign up 
+// ********************Sign up *****************
 
 function signup() {
   savedUsername = document.getElementById('signupUsername').value;
@@ -24,7 +24,7 @@ function signup() {
   return false; // Prevent form submission and page reload
 }
 
-// Login 
+//********************* */ Login ***********************
 
 function login() {
     const loginEmail = document.getElementById('loginEmail').value;
@@ -41,7 +41,6 @@ function login() {
             icon: "success",
             button: "OK",
           }).then(() => {
-            // Afetr Sign in redirect welcome page
             localStorage.setItem('username', savedUsername);
             window.location.href = "./routes/welcome.html";
           });
@@ -57,10 +56,10 @@ function login() {
     }
   
   
-  return false; // Prevent form submission and page reload
+  return false;
 }
 
-// Logout 
+// *****************************Logout ***********************
 
 function logout() {
     savedEmail = '';
@@ -73,7 +72,7 @@ function logout() {
       icon: "info",
       button: "OK",
     }).then(() => {
-      window.location.href = "../index.html";
+      window.location.href = "../../index.html";
     });
   
     console.log("User logged out");
@@ -88,7 +87,7 @@ document.getElementById('myname').innerHTML = `
 Welcome , ${username}
 `
 
-// Redirect pages 
+// ********************Redirect pages *********************
 
 function webdev(){
     window.location.href = "./webdev/index.html";
@@ -100,7 +99,7 @@ function module(){
   window.location.href = "./module/index.html";
 }
 
-// Redirect Quiz Window
+//*********************** */ Redirect Quiz Window*******************
 function htmlcss(){
   window.location.href = "./htmlcss.html";
 }

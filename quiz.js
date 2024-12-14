@@ -121,132 +121,7 @@ var htmlCssQuiz = [
     }
 ];
 
-// JavaScript Quiz 
-
-const jsQuiz = [
-    {
-      que: "Which type of JavaScript language is?",
-      ans1: "Object-Oriented",
-      ans2: "Object-Based",
-      ans3: "Assembly-language",
-      ans4: "High-level",
-      anskey: "Object-Based",
-    },
-    {
-      que: "Which of the following is not JavaScript Data Types?",
-      ans1: "Undefined",
-      ans2: "Number",
-      ans3: "Boolean",
-      ans4: "Float",
-      anskey: "Float",
-    },
-    {
-      que: "Which company developed JavaScript?",
-      ans1: "Netscape",
-      ans2: "Bell Labs",
-      ans3: "Sun Microsystems",
-      ans4: "IBM",
-      anskey: "Netscape",
-    },
-    {
-      que: "Inside which HTML element do we put the JavaScript?",
-      ans1: "<script>",
-      ans2: "<js>",
-      ans3: "<scripting>",
-      ans4: "<javascript>",
-      anskey: "<script>",
-    },
-    {
-      que: "Which symbol is used for comments in JavaScript?",
-      ans1: "//",
-      ans2: "/* */",
-      ans3: "#",
-      ans4: "<!-- -->",
-      anskey: "//",
-    },
-    {
-      que: "How can you convert a string to an integer in JavaScript?",
-      ans1: "parseInt()",
-      ans2: "Integer()",
-      ans3: "int()",
-      ans4: "parse()",
-      anskey: "parseInt()",
-    },
-    {
-      que: "What will `typeof NaN` return?",
-      ans1: "Object",
-      ans2: "Number",
-      ans3: "String",
-      ans4: "Undefined",
-      anskey: "Number",
-    },
-    {
-      que: "Which JavaScript method is used to write into an alert box?",
-      ans1: "window.alert()",
-      ans2: "document.alert()",
-      ans3: "alertBox()",
-      ans4: "msgAlert()",
-      anskey: "window.alert()",
-    },
-    {
-      que: "Which method is used to remove the last element from an array?",
-      ans1: "shift()",
-      ans2: "pop()",
-      ans3: "delete()",
-      ans4: "splice()",
-      anskey: "pop()",
-    },
-    {
-      que: "What is the output of `Boolean('')` in JavaScript?",
-      ans1: "true",
-      ans2: "false",
-      ans3: "undefined",
-      ans4: "null",
-      anskey: "false",
-    },
-    {
-      que: "What is the purpose of `isNaN` function in JavaScript?",
-      ans1: "Checks if a value is a number",
-      ans2: "Checks if a value is not a number",
-      ans3: "Converts a value to a number",
-      ans4: "Rounds a number",
-      anskey: "Checks if a value is not a number",
-    },
-    {
-      que: "Which operator is used to assign a value to a variable?",
-      ans1: "=",
-      ans2: "==",
-      ans3: "===",
-      ans4: ":",
-      anskey: "=",
-    },
-    {
-      que: "Which JavaScript method can be used to find the length of a string?",
-      ans1: "size()",
-      ans2: "length()",
-      ans3: "strlen()",
-      ans4: ".length",
-      anskey: ".length",
-    },
-    {
-      que: "Which method is used to add new elements to the end of an array?",
-      ans1: "push()",
-      ans2: "add()",
-      ans3: "append()",
-      ans4: "insert()",
-      anskey: "push()",
-    },
-    {
-      que: "What is the purpose of `JSON.stringify` in JavaScript?",
-      ans1: "Converts JSON to a string",
-      ans2: "Parses a string to JSON",
-      ans3: "Creates a new object",
-      ans4: "Formats a string",
-      anskey: "Converts JSON to a string",
-    },
-  ];
-  
-
+// *************Render Question *******************
 
 var question = document.getElementById('question')
 var opt1 = document.getElementById('textOpt1')
@@ -283,7 +158,6 @@ function htmlcss() {
 window.onload = htmlcss()
 
 function next() {
-    //Reading and checking value of selected option
     for (var i = 0; i < ans.length; i++) {
         if (ans[i].checked) {
             console.log(ans[i].value)
@@ -294,25 +168,33 @@ function next() {
     }
     console.log(score)
     queCount++
+
     //Next Question
     if (queCount < htmlCssQuiz.length) {
         htmlcss()
         unSelect()
 
     } else {
-        //Showing Result with Score
-        document.getElementById('quizWindow').style.display = 'none'
-        document.getElementById('resultWindow').style.display = 'block'
-        var totalQue = document.getElementById('totalQue')
-        var correctQue = document.getElementById('correctQue')
-        totalQue.innerText = htmlCssQuiz.length
-        correctQue.innerText = score
-        var per = document.getElementById('per')
-        var CalculatePer = (score / htmlCssQuiz.length) * 100
-        per.innerText = Math.round(CalculatePer) + "%"
 
+        document.getElementById('quizWindow').style.display = 'none';
+        document.getElementById('resultWindow').style.display = 'block';
 
-        //Conditions of Result display as per score
+        var totalQue = document.getElementById('totalQue');
+        var correctQue = document.getElementById('correctQue');
+        totalQue.innerText = htmlCssQuiz.length;
+        correctQue.innerText = score;
+        var per = document.getElementById('per');
+        var CalculatePer = (score / htmlCssQuiz.length) * 100;
+        per.innerText = Math.round(CalculatePer) + "%";
+
+        var resultData = {
+            totalQuestions: htmlCssQuiz.length,
+            correctQuestions: score,
+            percentage: (score / htmlCssQuiz.length) * 100
+        };
+
+        localStorage.setItem('quizResults', JSON.stringify(resultData));
+
         if (CalculatePer < 70) {
             var msg = document.getElementById('result')
             var dial = document.getElementById('dial')
@@ -328,109 +210,60 @@ function next() {
         }
     }
 }
-//Deselect next radio
+
 function unSelect() {
     for (var i = 0; i < ans.length; i++) {
         ans[i].checked = false
     }
 }
 
-//return to home from result
 function back() {
     window.location.href = '../welcome.html'
 }
 
+//********* */ Already Attemted ************
 
-//**************** */ JavaScript Quiz ************************
+function checkQuizAttempt() {
+    var storedData = JSON.parse(localStorage.getItem('quizResults'));
 
-var questionjs = document.getElementById('questionjs')
-var opt1js = document.getElementById('textOpt1js')
-var opt2js = document.getElementById('textOpt2js')
-var opt3js = document.getElementById('textOpt3js')
-var opt4js = document.getElementById('textOpt4js')
-var ansjs = document.getElementsByClassName('answer1js')
-var btnjs = document.getElementById('nextjs')
-var inp1js = document.getElementById('ans1js')
-var inp2js = document.getElementById('ans2js')
-var inp3js = document.getElementById('ans3js')
-var inp4js = document.getElementById('ans4js')
+    if (storedData) {
+        document.getElementById('quizWindow').style.display = 'none';
+        document.getElementById('resultWindow').style.display = 'block';
 
-opt1js.style.cursor = 'pointer'
-opt2js.style.cursor = 'pointer'
-opt3js.style.cursor = 'pointer'
-opt4js.style.cursor = 'pointer'
+        document.getElementById('name2').innerText = `Attempted !`;
+        document.getElementById('totalQue').innerText = storedData.totalQuestions;
+        document.getElementById('correctQue').innerText = storedData.correctQuestions;
 
-var queCountjs = 0
-var scorejs = 0
+        var per = document.getElementById('per');
+        per.innerText = Math.round(storedData.percentage) + "%";
 
-function javascript() {
-    var getQuestionjs = jsQuiz[queCountjs]
-    questionjs.innerHTML = getQuestionjs.que
-    opt1js.innerHTML = getQuestionjs.ans1
-    opt2js.innerHTML = getQuestionjs.ans2
-    opt3js.innerHTML = getQuestionjs.ans3
-    opt4js.innerHTML = getQuestionjs.ans4
-    inp1js.value = getQuestionjs.ans1
-    inp2js.value = getQuestionjs.ans2
-    inp3js.value = getQuestionjs.ans3
-    inp4js.value = getQuestionjs.ans4
-}
-window.onload = javascript()
+        var msg = document.getElementById('result');
+        var dial = document.getElementById('dial');
 
-function nextjs() {
-    //Reading and checking value of selected option
-    for (var i = 0; i < ansjs.length; i++) {
-        if (ansjs[i].checked) {
-            console.log(ansjs[i].value)
-            if (ansjs[i].value === jsQuiz[queCountjs].anskey) {
-                scorejs++
-            }
-        }
-    }
-    console.log(scorejs)
-    queCountjs++
-    //Next Question
-    if (queCountjs < jsQuiz.length) {
-        javascript()
-        unSelect()
-
-    } else {
-        //Showing Result with Score
-        document.getElementById('quizWindow').style.display = 'none'
-        document.getElementById('resultWindow').style.display = 'block'
-        var totalQuejs = document.getElementById('totalQuejs')
-        var correctQuejs = document.getElementById('correctQuejs')
-        totalQuejs.innerText = jsQuiz.length
-        correctQuejs.innerText = score
-        var perjs = document.getElementById('perjs')
-        var CalculatePerjs = (scorejs / jsQuiz.length) * 100
-        perjs.innerText = Math.round(CalculatePerjs) + "%"
-
-
-        //Conditions of Result display as per score
-        if (CalculatePerjs < 70) {
-            var msg = document.getElementById('result')
-            var dial = document.getElementById('dial')
-            msg.innerText = 'Better Luck Next Time ! You Failed'
-            msg.style.color = 'red'
-            dial.style.borderColor = 'red'
+        if (storedData.percentage < 70) {
+            msg.innerText = 'Better Luck Next Time! You Failed';
+            msg.style.color = 'red';
+            dial.style.borderColor = 'red';
         } else {
-            var msg = document.getElementById('result')
-            var dial = document.getElementById('dial')
-            msg.innerText = 'Congratulations ! You Passed'
-            msg.style.color = 'green'
-            dial.style.borderColor = 'green'
+            msg.innerText = 'Congratulations! You Passed';
+            msg.style.color = 'green';
+            dial.style.borderColor = 'green';
         }
-    }
-}
-//Deselect next radio
-function unSelect() {
-    for (var i = 0; i < ans.length; i++) {
-        ans[i].checked = false
+    } else {
+        document.getElementById('quizWindow').style.display = 'block';
+        document.getElementById('resultWindow').style.display = 'none';
     }
 }
 
-//return to home from result
-function back() {
-    window.location.href = '../welcome.html'
+window.onload = checkQuizAttempt;
+
+//*********** */ Restart Quiz *********************
+
+function restartQuiz() {
+    localStorage.removeItem('quizResults');
+    document.getElementById('resultWindow').style.display = 'none'; 
+    document.getElementById('quizWindow').style.display = 'block';
 }
+
+
+

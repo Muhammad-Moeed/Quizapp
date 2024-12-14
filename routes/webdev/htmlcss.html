@@ -20,7 +20,12 @@
                     <div class="beta">
                         <button onclick="scores()" class="button-30" role="button">Results</button>
                         <p id="name"></p>
-                        <button class="container__btn" onclick="darkmode()">CHANGE MODE <i class="fas fa-moon"></i> </button>
+                        <!-- <button class="container__btn" onclick="darkmode()">CHANGE MODE <i class="fas fa-moon"></i> </button> -->
+                         <button class="container__btn" onclick="darkmode()" id="theme-switch">
+                            <img src="../../assets/darkmood.svg" alt="">
+                            <img src="../../assets/lightmood.svg" alt="">
+                            
+                        </button>
                         <p><i title="LogOut" onclick="logout()" id="logout" class="fa-solid fa-right-from-bracket"></i></p>
                     </div>
                 </div>
@@ -74,7 +79,11 @@
                 </div>
                 <br>
                 <div class="backHome">
-                    <button onclick="back()" style="width: max-content; margin: 0 auto !important;" type="submit" class="btn2">Back to Home</button> </div>
+                    <button onclick="back()" style="width: max-content; margin: 0 auto !important;" type="submit" class="btn2">Back to Home</button> 
+                    <button onclick="restartQuiz()" style="width: max-content; margin: 0 auto !important;" type="submit" class="btn2">Restart Quiz </button> 
+
+                </div>
+                    
             </div>
         </div>
 

@@ -32,7 +32,9 @@ body {
     color: white;
     font-family: 'josephin-sans';
     margin-top: -2px;
+    margin-right: 50px;
 }
+
 
 #logout {
     margin-left: 20px;
@@ -383,6 +385,7 @@ td {
 
 
 /* Light and drak Theme */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -426,17 +429,52 @@ body:not(.dark-mode) {
 }
  
  
-.container__btn {
-    padding: 10px;
-    color: #fff;
-    background-color: black;
-    border: 1px solid;
-    cursor: pointer;
-    margin-left: 10px;
-    
-}
 
-.container__btn:hover {
-    color:#ccae62;
-    border: 1px solid #ccae62;
-}
+:root{
+    --base-color: white;
+    --base-variant: #e8e9ed;
+    --text-color: #111528;
+    --secondary-text: #232738;
+    --primary-color: #3a435d;
+    --accent-color: #0071ff;
+  }
+  
+  
+  button{
+    border: none;
+    padding: .8em 2em;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font: inherit;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  #theme-switch{
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    
+  }
+  #theme-switch img{
+    fill: var(--primary-color);
+  }
+  #theme-switch img:last-child{
+    display: none;
+  }
+  .darkmode #theme-switch img:first-child{
+    display: none;
+  }
+  .darkmode #theme-switch img:last-child{
+    display: block;
+  }
